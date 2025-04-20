@@ -3,7 +3,7 @@ body {
 	padding: 0;
 	background: #ffc0cb;
 	font-size: 20px;
-	font-family: '微软雅黑', '宋体', sans-serif;
+	font-family: 'KaiTi', '楷体', '微软雅黑', '宋体', sans-serif;
 	color: #000000;
 	overflow: auto
 }
@@ -20,8 +20,8 @@ a {
 #wrap {
 	position: relative;
 	margin: 0 auto;
-	width: 1100px;
-	height: 680px;
+	width: 935px;
+	height: 578px;
 	margin-top: 10px;
 }
 
@@ -61,8 +61,8 @@ a {
 
 #canvas {
 	margin: 0 auto;
-	width: 1100px;
-	height: 680px;
+	width: 935px;
+	height: 578px;
 }
 
 #error {

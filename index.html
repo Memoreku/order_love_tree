@@ -59,10 +59,31 @@
 
     </div>
 
-    <audio id="media" src="love.mp3" controls autoplay loop></audio>
+    <audio id="media" src="love.mp3" loop></audio>
 
     <script>
         (function () {
+            // 添加音频播放控制
+            var audio = document.getElementById('media');
+            var hasInteracted = false;
+
+            // 监听页面点击事件
+            document.addEventListener('click', function() {
+                if (!hasInteracted) {
+                    audio.play();
+                    hasInteracted = true;
+                }
+            });
+
+            // 尝试自动播放
+            var playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(function(error) {
+                    // 自动播放失败，等待用户交互
+                    console.log('Autoplay prevented, waiting for user interaction');
+                });
+            }
+
             var canvas = $('#canvas');
 
             if (!canvas[0].getContext) {
