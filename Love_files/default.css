@@ -107,11 +107,34 @@ a {
 		font-size: 16px;
 	}
 
+	#main {
+		width: 100%;
+	}
+
+	#wrap {
+		width: 100%;
+		min-height: auto;
+		max-width: 100%;
+	}
+
 	#text {
 		top: 40px;
+		max-width: 100%;
+		width: 100%;
+		position: relative;
+		box-sizing: border-box;
+	}
+
+	#canvas {
+		max-width: 100%;
+		width: 100%;
+		min-height: auto;
 	}
 
 	#clock-box {
+		position: relative;
+		bottom: auto;
+		margin-top: 30px;
 		font-size: 16px;
 	}
 

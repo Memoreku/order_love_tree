@@ -73,6 +73,15 @@
 
             var width = canvas.width();
             var height = canvas.height();
+            
+            // 检测是否为移动设备
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) {
+                // 移动端适配：调整为屏幕宽度
+                width = window.innerWidth;
+                // 保持原始宽高比
+                height = window.innerWidth * (680/1100);
+            }
 
             canvas.attr("width", width);
             canvas.attr("height", height);
