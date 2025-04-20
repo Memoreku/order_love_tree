@@ -105,11 +105,22 @@ a {
 @media screen and (max-width: 768px) {
 	body {
 		font-size: 16px;
+		overflow-x: hidden;
+	}
+
+	#main {
+		width: 100%;
+		overflow: hidden;
+		height: auto;
 	}
 
 	#wrap {
-		min-height: auto;
+		min-height: 100vh;
 		height: auto;
+		position: relative;
+		margin-top: 0;
+		display: flex;
+		flex-direction: column;
 	}
 
 	#text {
@@ -118,18 +129,29 @@ a {
 		max-width: 100%;
 		padding: 20px;
 		margin-bottom: 20px;
+		order: 1;
+		z-index: 2;
+		background-color: rgba(255, 192, 203, 0.7);
 	}
 
 	#canvas {
-		min-height: auto;
+		min-height: 100vh;
+		width: 100%;
 		height: auto;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
 	}
 
 	#clock-box {
 		position: relative;
 		bottom: auto;
-		margin-top: 20px;
+		margin-top: auto;
 		padding: 20px;
+		order: 3;
+		z-index: 2;
+		background-color: rgba(255, 192, 203, 0.7);
 	}
 
 	.say {
@@ -148,8 +170,21 @@ a {
 		padding: 15px;
 	}
 
+	#code {
+		font-size: 14px;
+	}
+
 	#clock-box {
 		padding: 15px;
+		font-size: 14px;
+	}
+
+	#clock-box a {
+		font-size: 14px;
+	}
+
+	#clock .digit {
+		font-size: 18px;
 	}
 
 	.say {

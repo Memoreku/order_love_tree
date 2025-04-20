@@ -60,9 +60,26 @@
 
     </div>
 
-    <audio id="media" src="love.mp3" autoplay preload="auto" loop="loop"></audio>
+    <audio id="media" src="love.mp3" autoplay preload="auto" loop="loop" controlsList="nodownload"></audio>
 
     <script>
+        // 确保在不同设备上音频能正常播放
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('media');
+            
+            // 添加点击事件，解决移动端自动播放限制问题
+            document.addEventListener('click', function() {
+                audio.play().catch(function(error) {
+                    console.log('播放失败:', error);
+                });
+            }, { once: true });
+            
+            // 尝试自动播放
+            audio.play().catch(function(error) {
+                console.log('自动播放失败，等待用户交互:', error);
+            });
+        });
+        
         (function () {
             var canvas = $('#canvas');
 
@@ -119,12 +136,33 @@
             // 如果是移动设备，调整画布大小和位置
             if (isMobile) {
                 width = window.innerWidth;
-                height = window.innerHeight * 1.5; // 增加高度以适应向下移动的树
+                height = window.innerHeight;
                 canvas.attr("width", width);
                 canvas.attr("height", height);
-                opts.seed.x = width / 2 - 20;
+                
+                // 调整种子位置到屏幕中心偏下
+                opts.seed.x = width / 2;
+                opts.seed.y = height * 0.6;
+                
+                // 调整绽放区域
                 opts.bloom.width = width;
                 opts.bloom.height = height;
+                
+                // 缩放树枝位置匹配移动端屏幕
+                var scaleFactor = Math.min(width / 1100, height / 680);
+                for (var i = 0; i < opts.branch.length; i++) {
+                    // 缩放树枝的起始位置
+                    opts.branch[i][0] = opts.seed.x;
+                    opts.branch[i][1] = opts.seed.y;
+                    
+                    // 缩放其他控制点
+                    for (var j = 2; j < opts.branch[i].length; j++) {
+                        if (typeof opts.branch[i][j] === 'number') {
+                            // 只缩放数值，不缩放子分支数组
+                            opts.branch[i][j] *= scaleFactor;
+                        }
+                    }
+                }
             }
 
             var tree = new Tree(canvas[0], width, height, opts);
@@ -182,13 +220,13 @@
             var moveAnimate = eval(Jscex.compile("async", function () {
                 if (isMobile) {
                     // 移动端：树向下移动
-                    tree.snapshot("p1", 0, 240, width, height);
-                    while (tree.move("p1", 0, 500)) {
+                    tree.snapshot("p1", 0, 0, width, height);
+                    while (tree.move("p1", 0, Math.min(height * 0.2, 100))) {
                         foot.draw();
                         $await(Jscex.Async.sleep(10));
                     }
                     foot.draw();
-                    tree.snapshot("p2", 0, 500, width, height);
+                    tree.snapshot("p2", 0, Math.min(height * 0.2, 100), width, height);
                 } else {
                     // PC端：树向右移动
                     tree.snapshot("p1", 240, 0, 610, 680);

@@ -7,10 +7,19 @@ var $win = $(window);
 var clientWidth = $win.width();
 var clientHeight = $win.height();
 
+// 防止移动端旋转屏幕时自动刷新页面
+var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 $(window).resize(function() {
     var newWidth = $win.width();
     var newHeight = $win.height();
-    if (newWidth != clientWidth && newHeight != clientHeight) {
+    
+    // 如果是移动设备，仅在宽度变化超过50%时才刷新页面
+    if (isMobile) {
+        var widthChange = Math.abs(newWidth - clientWidth) / clientWidth;
+        if (widthChange > 0.5) {
+            location.replace(location);
+        }
+    } else if (newWidth != clientWidth && newHeight != clientHeight) {
         location.replace(location);
     }
 });
