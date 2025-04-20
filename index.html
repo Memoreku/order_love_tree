@@ -2,13 +2,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>一封情书</title>
     <link rel="icon" type="image/x-icon" href="https://i.loli.net/2021/06/03/lFg2V4WUcmkB98G.png">
     <meta name="language" content="zh-CN">
-    <meta name="title" content="一封情书">
+    <meta name="title" content="小孙同学">
     <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
-    <meta name="describe" content="写一封浪漫的情书">
+    <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
     <link type="text/css" rel="stylesheet" href="./Love_files/default.css">
     <script type="text/javascript" src="./Love_files/jquery.min.js"></script>
     <script type="text/javascript" src="./Love_files/jscex.min.js"></script>
@@ -60,7 +59,7 @@
 
     </div>
 
-    <audio id="media" src="love.mp3" autoplay preload="auto" loop="loop"></audio>
+    <audio id="media" src="love.mp3" controls autoplay loop></audio>
 
     <script>
         (function () {
@@ -73,15 +72,6 @@
 
             var width = canvas.width();
             var height = canvas.height();
-            
-            // 检测是否为移动设备
-            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            if (isMobile) {
-                // 移动端适配：调整为屏幕宽度
-                width = window.innerWidth;
-                // 保持原始宽高比
-                height = window.innerWidth * (680/1100);
-            }
 
             canvas.attr("width", width);
             canvas.attr("height", height);
@@ -202,7 +192,7 @@
 
             var textAnimate = eval(Jscex.compile("async", function () {
                 var together = new Date();
-                together.setFullYear(2001, 2, 25);
+                together.setFullYear(2001, 02, 25);
                 together.setHours(0);
                 together.setMinutes(0);
                 together.setSeconds(0);
