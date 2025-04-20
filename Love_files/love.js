@@ -162,37 +162,14 @@
             ctx.translate(point.x, point.y);
             ctx.scale(scale, scale);
             ctx.moveTo(0, 0);
-            
-            // 检测是否为移动设备，如果是，绘制更加明显的文字和箭头
-            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            if (isMobile) {
-                // 移动端更宽的线条
-                ctx.lineWidth = 2;
-                ctx.lineTo(15, 15);
-                ctx.lineTo(60, 15);
-                ctx.stroke();
-                
-                // 移动端更明显的点击文字
-                ctx.moveTo(0, 0);
-                ctx.scale(1, 1); // 更大的字体
-                ctx.fillStyle = "#FF0000"; // 更明显的颜色
-                ctx.strokeStyle = "#FFFFFF"; // 白色边框
-                ctx.lineWidth = 3;
-                ctx.font = "16px 微软雅黑,Verdana";
-                ctx.strokeText("点击这里", 23, 16);
-                ctx.fillText("点击这里", 23, 16);
-            } else {
-                // PC端原有样式
-                ctx.lineTo(15, 15);
-                ctx.lineTo(60, 15);
-                ctx.stroke();
-                
-                ctx.moveTo(0, 0);
-                ctx.scale(0.75, 0.75);
-                ctx.font = "12px 微软雅黑,Verdana";
-                ctx.fillText("click here", 23, 16);
-            }
-            
+    	    ctx.lineTo(15, 15);
+    	    ctx.lineTo(60, 15);
+            ctx.stroke();
+
+            ctx.moveTo(0, 0);
+            ctx.scale(0.75, 0.75);
+            ctx.font = "12px 微软雅黑,Verdana";
+            ctx.fillText("click here", 23, 16);
             ctx.restore();
         },
         clear: function() {
@@ -204,28 +181,7 @@
         hover: function(x, y) {
             var ctx = this.tree.ctx;
             var pixel = ctx.getImageData(x, y, 1, 1);
-            
-            // 检测是否为移动设备，如果是，扩大点击区域
-            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            if (isMobile) {
-                // 扩大检测区域为周围10个像素
-                for (var dx = -10; dx <= 10; dx += 5) {
-                    for (var dy = -10; dy <= 10; dy += 5) {
-                        var checkX = x + dx;
-                        var checkY = y + dy;
-                        if (checkX >= 0 && checkY >= 0) {
-                            var pixelCheck = ctx.getImageData(checkX, checkY, 1, 1);
-                            if (pixelCheck.data[3] == 255) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
-            }
-            
-            // PC端使用精确点击
-            return pixel.data[3] == 255;
+            return pixel.data[3] == 255
         }
     }
 
