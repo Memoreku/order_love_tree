@@ -2,7 +2,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>一封情书</title>
     <link rel="icon" type="image/x-icon" href="https://i.loli.net/2021/06/03/lFg2V4WUcmkB98G.png">
     <meta name="language" content="zh-CN">
@@ -170,22 +173,48 @@
             var foot = tree.footer;
             var hold = 1;
 
-            canvas.click(function (e) {
-                var offset = canvas.offset(), x, y;
-                x = e.pageX - offset.left;
-                y = e.pageY - offset.top;
-                if (seed.hover(x, y)) {
-                    hold = 0;
-                    canvas.unbind("click");
-                    canvas.unbind("mousemove");
-                    canvas.removeClass('hand');
-                }
-            }).mousemove(function (e) {
-                var offset = canvas.offset(), x, y;
-                x = e.pageX - offset.left;
-                y = e.pageY - offset.top;
-                canvas.toggleClass('hand', seed.hover(x, y));
-            });
+            // 移动端设备使用触摸事件
+            if (isMobile) {
+                // 为移动设备添加触摸事件
+                canvas[0].addEventListener('touchstart', function(e) {
+                    e.preventDefault(); // 防止滚动
+                    var touch = e.touches[0];
+                    var offset = canvas.offset();
+                    var x = touch.pageX - offset.left;
+                    var y = touch.pageY - offset.top;
+                    
+                    if (seed.hover(x, y)) {
+                        hold = 0;
+                        canvas[0].removeEventListener('touchstart', arguments.callee);
+                        canvas.removeClass('hand');
+                    }
+                });
+                
+                // 为移动设备自动开始动画的备选方案
+                setTimeout(function() {
+                    if (hold) {
+                        hold = 0; // 5秒后如果用户没点击，自动开始
+                    }
+                }, 5000);
+            } else {
+                // PC端使用鼠标事件
+                canvas.click(function (e) {
+                    var offset = canvas.offset(), x, y;
+                    x = e.pageX - offset.left;
+                    y = e.pageY - offset.top;
+                    if (seed.hover(x, y)) {
+                        hold = 0;
+                        canvas.unbind("click");
+                        canvas.unbind("mousemove");
+                        canvas.removeClass('hand');
+                    }
+                }).mousemove(function (e) {
+                    var offset = canvas.offset(), x, y;
+                    x = e.pageX - offset.left;
+                    y = e.pageY - offset.top;
+                    canvas.toggleClass('hand', seed.hover(x, y));
+                });
+            }
 
             var seedAnimate = eval(Jscex.compile("async", function () {
                 seed.draw();
