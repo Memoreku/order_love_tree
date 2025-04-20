@@ -1,0 +1,158 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #ffc0cb;
+	font-size: 20px;
+	font-family: '微软雅黑', '宋体', sans-serif;
+	color: #000000;
+	overflow: auto;
+}
+
+a {
+	color: #000;
+	font-size: 14px;
+}
+
+#main {
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+#wrap {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1100px;
+	height: auto;
+	min-height: 680px;
+	margin-top: 10px;
+}
+
+#text {
+	width: 100%;
+	max-width: 400px;
+	height: auto;
+	left: 0;
+	top: 80px;
+	position: absolute;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+#code {
+	display: none;
+	font-size: 16px;
+}
+
+#clock-box {
+	position: absolute;
+	left: 0;
+	top: auto;
+	bottom: 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+	display: none;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+#clock-box a {
+	font-size: 20px;
+	text-decoration: none;
+}
+
+#clock {
+	margin-left: 0;
+	margin-top: 10px;
+}
+
+#clock .digit {
+	font-size: 40px;
+}
+
+#canvas {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1100px;
+	height: auto;
+	min-height: 680px;
+}
+
+#error {
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 60px;
+	display: none;
+	padding: 0 20px;
+}
+
+.hand {
+	cursor: pointer;
+}
+
+.say {
+	margin-left: 5px;
+	word-break: break-word;
+}
+
+.space {
+	margin-right: 0;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+	body {
+		font-size: 16px;
+	}
+
+	#wrap {
+		min-height: auto;
+		height: auto;
+	}
+
+	#text {
+		position: relative;
+		top: 0;
+		max-width: 100%;
+		padding: 20px;
+		margin-bottom: 20px;
+	}
+
+	#canvas {
+		min-height: auto;
+		height: auto;
+	}
+
+	#clock-box {
+		position: relative;
+		bottom: auto;
+		margin-top: 20px;
+		padding: 20px;
+	}
+
+	.say {
+		margin-left: 0;
+		padding: 0 10px;
+		line-height: 1.6;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	body {
+		font-size: 14px;
+	}
+
+	#text {
+		padding: 15px;
+	}
+
+	#clock-box {
+		padding: 15px;
+	}
+
+	.say {
+		line-height: 1.5;
+	}
+}

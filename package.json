@@ -1,0 +1,25 @@
+{
+  "name": "tree_love",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -p 3000",
+    "test": "http-server -p 3000",
+    "dev": "http-server -p 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Greyyy-HJC/tree_love.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Greyyy-HJC/tree_love/issues"
+  },
+  "homepage": "https://github.com/Greyyy-HJC/tree_love#readme",
+  "description": "",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
