@@ -26,10 +26,11 @@ a {
 }
 
 #text {
-	width: 450px;
+	width: 500px;
 	height: 425px;
-	left: 50px;
+	left: 20px;
 	top: 50px;
+	margin-left: 0px;
 	position: absolute;
 }
 
