@@ -26,12 +26,13 @@ a {
 }
 
 #text {
-	width: 500px;
+	width: 480px;
 	height: 425px;
-	left: 20px;
-	top: 50px;
+	left: 10px;
+	top: 10px;
 	margin-left: 0px;
 	position: absolute;
+	font-family: 'STXingkai', 'XingKai SC', '行楷', 'KaiTi', '楷体', '微软雅黑', '宋体', sans-serif;
 }
 
 #code {
